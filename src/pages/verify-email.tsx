@@ -3,6 +3,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import ENDPOINTS from "@/utils/constants";
 import Link from "next/link";
+import ReactPlayer from "react-player";
+import successVideo from "../../Videos/Done.mp4"
 
 const VerifyEmail: React.FC = () => {
   const router = useRouter();
@@ -46,9 +48,12 @@ const VerifyEmail: React.FC = () => {
       <div className="max-w-md w-full bg-white shadow-md rounded-lg p-8">
         {status === true ? (
           <>
-            <h1 className="text-2xl font-semibold text-center text-green-600 mb-4">
-              Your Account Has Been Verified!
-            </h1>
+            <ReactPlayer
+              url = {successVideo}
+              controls
+              width="600px"
+              height="auto"
+            />
             <p className="text-center text-gray-600 mb-6">
               Congratulations! Your account has been successfully verified. You
               can now proceed to log in.
@@ -58,12 +63,25 @@ const VerifyEmail: React.FC = () => {
                 href="/login"
                 className="inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200"
               >
-                
+                Log in
               </Link>
             </div>
           </>
         ) : (
           <>
+            <video
+              className="w-full h-auto mb-6"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source
+                src="/path-to-your-failure-animation.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
             <h1 className="text-2xl font-semibold text-center text-red-600 mb-4">
               Verification Failed
             </h1>

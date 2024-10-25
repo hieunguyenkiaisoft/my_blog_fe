@@ -41,11 +41,10 @@ const SignUp: React.FC = () => {
   });
 
   const onSubmit = async (data: User) => {
+    const payload = {user: {email: data.email, phone: data.phone, password: data.password, password_confirmation: data.password_confirmation, name: data.name}}
     try {
-      const payload = {
-        user: { data }
-      }
       const response = await axios.post(ENDPOINTS.USER + "/signup", payload);
+      console.log(payload);
       console.log("Registration successful:", response.data);
       window.location.href = "/welcome";
     } catch (error) {
